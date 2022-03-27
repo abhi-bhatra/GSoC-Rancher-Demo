@@ -24,6 +24,25 @@ Before we start, remember that blockchain is an immutable chain of records calle
 
 Blocks are chained together with hashes. Developing a blockchain from scratch and its implementation can take months or years to complete because it requires thorough research. It takes a lot of consideration and time to discover and implement an idea successfully.
 
-3. We will try to provision multiple blockchain protocols on Kubernetes clusters and then integrate the Rancher to the cluster to provision and manage the complex 
+3. We will try to provision multiple blockchain protocols on Kubernetes clusters and then integrate the Rancher to the cluster to provision and manage the complex blockchain infrastructure.
 
+### How-to Guide
 
+1. Store the docker images in the private or public Docker registries.
+2. Create a cluster in Azure AKS
+<img width="960" alt="cluster" src="https://user-images.githubusercontent.com/63901956/160291584-09617068-112d-41d2-bf4c-dffbe2f7412a.png">
+
+Steps to create AKS Cluster: https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough-portal
+
+3. Create a Virtual Machine, or You can also run Rancher in your local machine:
+<ul>
+  <li>Install Docker on your system: https://docs.docker.com/engine/install/</li>
+  <li>Install Rancher, visit: https://rancher.com/quick-start</li>
+</ul>
+
+Or use:
+```shell
+sudo docker run --privileged -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
+```
+<ul>
+  <li>Run the Web UI of the Rancher: `http://localhost`</li>
