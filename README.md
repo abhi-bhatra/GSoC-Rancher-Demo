@@ -44,5 +44,14 @@ Or use:
 ```shell
 sudo docker run --privileged -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
 ```
+
 <ul>
   <li>Run the Web UI of the Rancher: `http://localhost`</li>
+  <li>UI will open: <li>
+  
+  ![Screenshot from 2022-03-22 14-21-27](https://user-images.githubusercontent.com/63901956/160294831-fb11b5b2-8214-4bdc-b403-c2394370ec79.png)
+  
+  Run the command: `kubectl get secret --namespace cattle-system bootstrap-secret -o -go-template='{{.data.bootstrapPassword | base64decode}}{{"\n"}}'`
+  
+  <li>Create new passwords for Rancher</li>
+  <li>Now here we can create our new cluster or can import an existing one</li>
