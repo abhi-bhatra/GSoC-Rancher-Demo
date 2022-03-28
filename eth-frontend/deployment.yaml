@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ethereum-protocol-front-end
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: ethereum-protocol-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ethereum-protocol-frontend
+    spec:
+      containers:
+      - name: ethereum-protocol-frontend
+        image: <dev>
+        imagePullPolicy: Always
+        ports:
+        - name: external-port
+          containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - name: ethereum-frontend-config
+          mountPath: /usr/share/nginx/html/config.json
+          subPath: config.json
+      volumes:
+      - name: ethereum-frontend-config
+        configMap:
+          name: ethereum-frontend-config
+      imagePullSecrets:
+        - name: regcred

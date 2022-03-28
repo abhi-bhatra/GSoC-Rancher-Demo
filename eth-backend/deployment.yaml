@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ethereum-protocol-provision-backend
+  namespace: dev
+spec:
+  selector:
+    matchLabels:
+      app: ethereum-ppb
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ethereum-ppb
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - name: ethereum-ppb
+        image: <img>
+        securityContext:
+          runAsUser: 1000
+          runAsGroup: 1000
+        imagePullPolicy: Always
+        ports:
+        - name: internal-port
+          containerPort: 5004
+          protocol: TCP
+        env:
+          - name: GITLAB_ACCESS_TOKEN
+            value: ''
+          - name: PG_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: ethereum-ppb-config
+                key: postgres_host
+          - name: PG_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: ethereum-ppb-config
+                key: postgres_port
+          - name: PG_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: ethereum-ppb-config
+                key: postgres_database
+          - name: PG_MAX_CONNECTIONS
+            valueFrom:
+              configMapKeyRef:
+                name: ethereum-ppb-config
+                key: max_db_connections
+          - name: PG_MIN_CONNECTIONS
+            valueFrom:
+              configMapKeyRef:
+                name: ethereum-ppb-config
+                key: min_db_connections
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: ethereum-ppb-secrets
+                key: postgres_username
+          - name: PGPASS
+            valueFrom:
+              secretKeyRef:
+                name: ethereum-ppb-secrets
+                key: postgres_password
+          - name: ALLOWED_URLS
+            valueFrom:
+              configMapKeyRef:
+                name: ethereum-ppb-config
+                key: allowed_urls
+      imagePullSecrets:
+        - name: regcred
