@@ -27,6 +27,9 @@ Blocks are chained together with hashes. Developing a blockchain from scratch an
 3. We will try to provision multiple blockchain protocols on Kubernetes clusters and then integrate the Rancher to the cluster to provision and manage the complex blockchain infrastructure.
 
 ### How-to Guide
+---
+
+#### Setup Rancher on existing cluster
 
 1. Store the docker images in the private or public Docker registries.
 2. Create a cluster in Azure AKS
@@ -46,6 +49,10 @@ sudo docker run --privileged -d --restart=unless-stopped -p 80:80 -p 443:443 ran
 ```
 
 <ul>
+  <li>Check for Rancher Container is up and Running</li>
+  
+  ![Screenshot from 2022-03-28 07-57-12](https://user-images.githubusercontent.com/63901956/160316208-469459e9-a49f-4ff4-956a-67304874f380.png)
+  
   <li>Run the Web UI of the Rancher: `http://localhost`</li>
   <li>UI will open: <li>
   
@@ -54,4 +61,34 @@ sudo docker run --privileged -d --restart=unless-stopped -p 80:80 -p 443:443 ran
   Run the command: `kubectl get secret --namespace cattle-system bootstrap-secret -o -go-template='{{.data.bootstrapPassword | base64decode}}{{"\n"}}'`
   
   <li>Create new passwords for Rancher</li>
-  <li>Now here we can create our new cluster or can import an existing one</li>
+  <li>Now on this tab we can create our new cluster or can import an existing one</li>
+  <li>Import your cluster</li>
+  
+  ![Screenshot from 2022-03-28 08-02-33](https://user-images.githubusercontent.com/63901956/160316637-e1deb81d-34a1-46ef-8a54-cc4eb4a032fc.png)
+  
+  <li>Once created, Run the kubectl command below on an existing Kubernetes cluster running a supported Kubernetes version to import it into Rancher: </li>
+ 
+  ![Screenshot from 2022-03-28 08-10-13](https://user-images.githubusercontent.com/63901956/160317354-1765eae4-a5d7-4751-9ffc-ed97c15a6b45.png)
+ 
+  </ul>
+  
+#### Set-Up the k8s cluster on Azure AKS
+
+1. Ensure that you have k8s tools installed, visit here for more details: https://kubernetes.io/docs/tasks/tools/ 
+
+2. Once you created Azure AKS cluster, click on `connect`and copy the commands into your system
+![Screenshot from 2022-03-28 08-17-32](https://user-images.githubusercontent.com/63901956/160318071-c6f744a0-5451-4ec1-8eb6-1604722903aa.png)
+
+
+3. Create a namespace `kubectl create namespace <namespace>`
+4. If the docker images are stored in private registries, then create docker certificates, regcred secrets, for pulling images from private registries.
+5. Apply yaml files: 
+<ul>
+  <li>configmap</li>
+  <li>secrets</li>
+  <li>pvc</li>
+  <li>deployment</li>
+  <li>service</li>
+</ul>
+
+6. Sample deployment files for the protocols: 
