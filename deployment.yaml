@@ -1,0 +1,188 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"orderer1","namespace":"hlf"},"spec":{"replicas":1,"selector":{"matchLabels":{"name":"orderer1"}},"template":{"metadata":{"annotations":{"prometheus.io/port":"8443","prometheus.io/scrape":"true"},"labels":{"name":"orderer1"}},"spec":{"containers":[{"command":["sh","-c","orderer"],"env":[{"name":"ORDERER_GENERAL_LEDGERTYPE","value":"file"},{"name":"CONFIGTX_ORDERER_ADDRESSES","value":"orderer1:7050"},{"name":"ORDERER_GENERAL_LISTENADDRESS","value":"0.0.0.0"},{"name":"ORDERER_GENERAL_LISTENPORT","value":"7050"},{"name":"FABRIC_LOGGING_SPEC","value":"info"},{"name":"ORDERER_GENERAL_LOCALMSPDIR","value":"/var/hyperledger/orderer/msp"},{"name":"ORDERER_GENERAL_LOCALMSPID","value":"gsocdemo"},{"name":"ORDERER_GENERAL_GENESISMETHOD","value":"file"},{"name":"ORDERER_GENERAL_GENESISFILE","value":"/var/hyperledger/orderer/genesis.block"},{"name":"ORDERER_GENERAL_GENESISPROFILE","value":"initial"},{"name":"ORDERER_GENERAL_TLS_ENABLED","value":"true"},{"name":"ORDERER_GENERAL_TLS_PRIVATEKEY","value":"/var/hyperledger/orderer/tls/server.key"},{"name":"ORDERER_GENERAL_TLS_CERTIFICATE","value":"/var/hyperledger/orderer/tls/server.crt"},{"name":"ORDERER_GENERAL_TLS_ROOTCAS","value":"/var/hyperledger/orderer/tls/ca.crt"},{"name":"ORDERER_GENERAL_TLS_CLIENTAUTHREQUIRED","valueFrom":{"configMapKeyRef":{"key":"enabled","name":"mutual-tls"}}},{"name":"ORDERER_GENERAL_TLS_CLIENTROOTCAS","value":"/var/hyperledger/orderer/tls/ca.crt"},{"name":"ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY","value":"/var/hyperledger/orderer/tls/server.key"},{"name":"ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE","value":"/var/hyperledger/orderer/tls/server.crt"},{"name":"ORDERER_GENERAL_CLUSTER_ROOTCAS","value":"/var/hyperledger/orderer/tls/ca.crt"},{"name":"GODEBUG","value":"netdns=go"},{"name":"ORDERER_OPERATIONS_LISTENADDRESS","value":":8443"},{"name":"ORDERER_METRICS_PROVIDER","value":"prometheus"}],"image":"hyperledger/fabric-orderer:2.2.0","name":"orderer","volumeMounts":[{"mountPath":"/var/hyperledger/production/orderer/","name":"fabric-storage","subPath":"orderer1"},{"mountPath":"/var/hyperledger/orderer/genesis.block","name":"genesisblock","readOnly":true,"subPath":"genesis.block"},{"mountPath":"/var/hyperledger/orderer/msp/admincerts","name":"admincerts","readOnly":true},{"mountPath":"/var/hyperledger/orderer/msp/cacerts","name":"cacerts","readOnly":true},{"mountPath":"/var/hyperledger/orderer/msp/keystore","name":"keystore","readOnly":true},{"mountPath":"/var/hyperledger/orderer/msp/signcerts","name":"signcerts","readOnly":true},{"mountPath":"/var/hyperledger/orderer/tls/server.key","name":"tls-keystore","readOnly":true,"subPath":"server.key"},{"mountPath":"/var/hyperledger/orderer/tls/server.crt","name":"tls-signcerts","readOnly":true,"subPath":"server.crt"},{"mountPath":"/var/hyperledger/orderer/tls/ca.crt","name":"tls-cacerts","readOnly":true,"subPath":"ca.crt"}],"workingDir":"/var/hyperledger/orderer"}],"imagePullSecrets":[{"name":"fabric-tools-secrets"}],"volumes":[{"name":"fabric-storage","persistentVolumeClaim":{"claimName":"azure-managed-disk-1"}},{"name":"genesisblock","secret":{"secretName":"hlf-genesis-block"}},{"name":"admincerts","secret":{"secretName":"hlf-admin-idcert"}},{"name":"signcerts","secret":{"secretName":"hlforderer1-idcert"}},{"name":"keystore","secret":{"secretName":"hlforderer1-idkey"}},{"name":"cacerts","secret":{"secretName":"hlf-ca-idcert"}},{"name":"tls-cacerts","secret":{"secretName":"hlf-tlsca-idcert"}},{"name":"tls-keystore","secret":{"secretName":"hlforderer1-tls-idkey"}},{"name":"tls-signcerts","secret":{"secretName":"hlforderer1-tls-idcert"}}]}}}}
+  creationTimestamp: "2022-04-15T12:37:09Z"
+  generation: 1
+  name: orderer1
+  namespace: hlf
+  resourceVersion: "3077"
+  uid: 13ffb7a5-a3cc-4386-838c-5bb8dfd6d4aa
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      name: orderer1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "8443"
+        prometheus.io/scrape: "true"
+      creationTimestamp: null
+      labels:
+        name: orderer1
+    spec:
+      containers:
+      - command:
+        - sh
+        - -c
+        - orderer
+        env:
+        - name: ORDERER_GENERAL_LEDGERTYPE
+          value: file
+        - name: CONFIGTX_ORDERER_ADDRESSES
+          value: orderer1:7050
+        - name: ORDERER_GENERAL_LISTENADDRESS
+          value: 0.0.0.0
+        - name: ORDERER_GENERAL_LISTENPORT
+          value: "7050"
+        - name: FABRIC_LOGGING_SPEC
+          value: info
+        - name: ORDERER_GENERAL_LOCALMSPDIR
+          value: /var/hyperledger/orderer/msp
+        - name: ORDERER_GENERAL_LOCALMSPID
+          value: gsocdemo
+        - name: ORDERER_GENERAL_GENESISMETHOD
+          value: file
+        - name: ORDERER_GENERAL_GENESISFILE
+          value: /var/hyperledger/orderer/genesis.block
+        - name: ORDERER_GENERAL_GENESISPROFILE
+          value: initial
+        - name: ORDERER_GENERAL_TLS_ENABLED
+          value: "true"
+        - name: ORDERER_GENERAL_TLS_PRIVATEKEY
+          value: /var/hyperledger/orderer/tls/server.key
+        - name: ORDERER_GENERAL_TLS_CERTIFICATE
+          value: /var/hyperledger/orderer/tls/server.crt
+        - name: ORDERER_GENERAL_TLS_ROOTCAS
+          value: /var/hyperledger/orderer/tls/ca.crt
+        - name: ORDERER_GENERAL_TLS_CLIENTAUTHREQUIRED
+          valueFrom:
+            configMapKeyRef:
+              key: enabled
+              name: mutual-tls
+        - name: ORDERER_GENERAL_TLS_CLIENTROOTCAS
+          value: /var/hyperledger/orderer/tls/ca.crt
+        - name: ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY
+          value: /var/hyperledger/orderer/tls/server.key
+        - name: ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE
+          value: /var/hyperledger/orderer/tls/server.crt
+        - name: ORDERER_GENERAL_CLUSTER_ROOTCAS
+          value: /var/hyperledger/orderer/tls/ca.crt
+        - name: GODEBUG
+          value: netdns=go
+        - name: ORDERER_OPERATIONS_LISTENADDRESS
+          value: :8443
+        - name: ORDERER_METRICS_PROVIDER
+          value: prometheus
+        image: hyperledger/fabric-orderer:2.2.0
+        imagePullPolicy: IfNotPresent
+        name: orderer
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/hyperledger/production/orderer/
+          name: fabric-storage
+          subPath: orderer1
+        - mountPath: /var/hyperledger/orderer/genesis.block
+          name: genesisblock
+          readOnly: true
+          subPath: genesis.block
+        - mountPath: /var/hyperledger/orderer/msp/admincerts
+          name: admincerts
+          readOnly: true
+        - mountPath: /var/hyperledger/orderer/msp/cacerts
+          name: cacerts
+          readOnly: true
+        - mountPath: /var/hyperledger/orderer/msp/keystore
+          name: keystore
+          readOnly: true
+        - mountPath: /var/hyperledger/orderer/msp/signcerts
+          name: signcerts
+          readOnly: true
+        - mountPath: /var/hyperledger/orderer/tls/server.key
+          name: tls-keystore
+          readOnly: true
+          subPath: server.key
+        - mountPath: /var/hyperledger/orderer/tls/server.crt
+          name: tls-signcerts
+          readOnly: true
+          subPath: server.crt
+        - mountPath: /var/hyperledger/orderer/tls/ca.crt
+          name: tls-cacerts
+          readOnly: true
+          subPath: ca.crt
+        workingDir: /var/hyperledger/orderer
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: fabric-tools-secrets
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: fabric-storage
+        persistentVolumeClaim:
+          claimName: azure-managed-disk-1
+      - name: genesisblock
+        secret:
+          defaultMode: 420
+          secretName: hlf-genesis-block
+      - name: admincerts
+        secret:
+          defaultMode: 420
+          secretName: hlf-admin-idcert
+      - name: signcerts
+        secret:
+          defaultMode: 420
+          secretName: hlforderer1-idcert
+      - name: keystore
+        secret:
+          defaultMode: 420
+          secretName: hlforderer1-idkey
+      - name: cacerts
+        secret:
+          defaultMode: 420
+          secretName: hlf-ca-idcert
+      - name: tls-cacerts
+        secret:
+          defaultMode: 420
+          secretName: hlf-tlsca-idcert
+      - name: tls-keystore
+        secret:
+          defaultMode: 420
+          secretName: hlforderer1-tls-idkey
+      - name: tls-signcerts
+        secret:
+          defaultMode: 420
+          secretName: hlforderer1-tls-idcert
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2022-04-15T12:37:55Z"
+    lastUpdateTime: "2022-04-15T12:37:55Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2022-04-15T12:37:09Z"
+    lastUpdateTime: "2022-04-15T12:37:55Z"
+    message: ReplicaSet "orderer1-5646788f79" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1

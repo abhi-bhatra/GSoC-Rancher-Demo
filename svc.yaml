@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"run":"orderer1"},"name":"orderer1","namespace":"hlf"},"spec":{"ports":[{"name":"grpc","port":7050,"protocol":"TCP"}],"selector":{"name":"orderer1"},"type":"ClusterIP"}}
+  creationTimestamp: "2022-04-15T12:37:09Z"
+  labels:
+    run: orderer1
+  name: orderer1
+  namespace: hlf
+  resourceVersion: "2785"
+  uid: 6980c7e0-f26e-440a-b302-ba7ed7e3fd83
+spec:
+  clusterIP: 10.0.169.48
+  clusterIPs:
+  - 10.0.169.48
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: grpc
+    port: 7050
+    protocol: TCP
+    targetPort: 7050
+  selector:
+    name: orderer1
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

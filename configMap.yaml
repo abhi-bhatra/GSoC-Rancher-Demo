@@ -1,0 +1,58 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    ca.crt: |
+      -----BEGIN CERTIFICATE-----
+      MIIE6TCCAtGgAwIBAgIRAIBMnnQ4YzV/KpKKgPicXf4wDQYJKoZIhvcNAQELBQAw
+      DTELMAkGA1UEAxMCY2EwIBcNMjIwNDE1MTIxODUyWhgPMjA1MjA0MTUxMjI4NTJa
+      MA0xCzAJBgNVBAMTAmNhMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA
+      y49sV3UpPk38IBm/69Ql8M3p9+2goVIlHowLWu6ZobqQ6D/krQfLO1uIMSEiVj9U
+      QKBsF4rc2Zm2T6+B1L9gR8vwox1bGKr9jAVXOoW9J11dKp1l69RqgJf3PwIAVnKJ
+      YhI8QoQU3v8fkoHBohYQtZxwP1gHgiFh4daHib9qD0qSZFu75cr3nsvzABqlNvg2
+      HmtjLbsy1FQkbHuIF9g/iexeFKlo4oBfTzVQSQwkWmXj92eYRG92/IjViL/QCrPa
+      fV155QXSRsVkZVtAewqOxs0mKV7tEUrdG5IGbFuviwgDGo55rawEaUQUzJVyAYTK
+      9vrvG0SRCMYMCc0YU+B1/5T9sQYL+tQrIraNiO1u6QYnsyHBeyFUleksxtXpCi3p
+      +oDGGOuOBsufEFAD8XKn2joRouw1mgc2/Vivc74ejw5l0g1kZgEYyi4O9BSKMIOy
+      yyUcBZp/DD39d35+EYxHa/kNbjRknEjybQgYBaEtyNB/V+otbA8qEJWJmAZOJQ9j
+      cJKdCINS5i50ULMS8rDIFJw/ol2cIFfASDTxfgCOgQNQ4AdhF7BEFrzVILGVO6UE
+      Ydpc7EdpINPlFlio0kAkABv9QldPOTnOaTksjffEW8dOfcR0yo8i1EU5jUlkJ5ni
+      oAO+ZaEZYTwshKSK84cIoZTwq5rh6ihAK0kjGdMRWvECAwEAAaNCMEAwDgYDVR0P
+      AQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFOcGNDfttgty6D//
+      M4KBr8kxGaY/MA0GCSqGSIb3DQEBCwUAA4ICAQDBGiX2TABYsSfG6+u4FTvxszGQ
+      aF2p2q1Wv8fIW7yKViaq0bjJUPrHjBAWe0slRJpulaC40zK7XHBgH28KrEzWYfQI
+      Jel6+68p5DcFbReTjSNYL9pxKheWvKjzOPjkVWh83qi1nYzSkwQ/U0PbOVTu4aCm
+      gHS8om7RjILcRpaqHSu1rZN52HeA3wQSddUzJCR218sCuIYL2Nry0XQHU2FUPWkN
+      4oEyUIej0/9aOFKMLiuvyqJ/ge1+RIp+jJqkrcAmk6R0ghyqf61vMUM/5Qd5V+tg
+      n8IWl3iVb6QBotkK9jVgNXc2dy1Uc3mOlZilky92oHtMNxLS4K2QycwXdaPpn0Q6
+      aADKmi4tbs3+Z4XPfsM9ueFbCixiy0rAyC9YdYjWdhUq2Lgd2nhRYX9pQGfGJTwl
+      OBdOTGF7EbOmDmgbqC68aNnIjia5pds6nq3w52kCg4yI9iF+k7+eG+N9Dgxib+ht
+      P/U1T8t/HdW9hQBc7pYZ/z3jSm9Z/cG2dzRjOrKn++AfltIqvDi2P5e8QTd0jkC5
+      Dr48p952dJ5kuhEbndDbAKNRiwRGn7ImvllUwmETLRAXqysZYGOUGil4/vEc245P
+      tpH7ifEAgKOn3ieOT6GZ1XDZ5ErTQq7NbQGTKX75E28HoMbLQmhI1+0f4qstsUiz
+      zK7rZ2a0KexKK7T8Iw==
+      -----END CERTIFICATE-----
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2022-04-15T12:34:46Z"
+    name: kube-root-ca.crt
+    namespace: hlf
+    resourceVersion: "2003"
+    uid: 15dc4f51-c16b-42a2-9dc8-2826f35a4b52
+- apiVersion: v1
+  data:
+    enabled: "false"
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"enabled":"false"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"mutual-tls","namespace":"hlf"}}
+    creationTimestamp: "2022-04-15T12:37:09Z"
+    name: mutual-tls
+    namespace: hlf
+    resourceVersion: "2781"
+    uid: fb856277-1baa-4cf6-a2b8-68b6a2937c19
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
