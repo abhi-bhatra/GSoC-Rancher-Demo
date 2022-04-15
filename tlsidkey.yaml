@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  server.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR0hBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ0UyNjJoMHhyR0ZqNHlxYnoKRHpndS91Z1dxb1pSNE95S0ZIOVhOdkYvb2RlaFJBTkNBQVM2Yml0K09yYzhJNXRwNzJDakVMYWdQaDN6eUNXbQpOVnVrdTVwOUcwT1ZOT1htQktPY0hkZzBjckNWVGJkU1RjcFE3RWc2K25ibVZWYTJ2L1hJc3JsVQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==
+kind: Secret
+metadata:
+  creationTimestamp: "2022-04-15T12:37:04Z"
+  name: hlforderer1-tls-idkey
+  namespace: hlf
+  resourceVersion: "2740"
+  uid: 2eeb7632-e132-4b4f-a48e-268e8eb29692
+type: Opaque

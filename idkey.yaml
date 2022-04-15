@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  key.pem: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR0hBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ2toaXRNWlkrdy9vdHFnWTMKTzdqeVlqcnhTbjAzMFV4bnVoU3Y0YUx3WHkyaFJBTkNBQVQzV3NVZ09zRTR2OWE4UjBERkphK28wd2NhNWo3Tgp5bDZvVVMzakZiWXl6Z0tIbDVpRDgrallrSSt6M29Uc2RZd0kvNXJZbHFraEtseGdUV092bkM2agotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==
+kind: Secret
+metadata:
+  creationTimestamp: "2022-04-15T12:37:03Z"
+  name: hlforderer1-idkey
+  namespace: hlf
+  resourceVersion: "2728"
+  uid: 648b5ee0-c2b9-4e70-8041-d3c28b832f64
+type: Opaque
